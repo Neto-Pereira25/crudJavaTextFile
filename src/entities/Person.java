@@ -1,7 +1,5 @@
 package entities;
 
-import java.util.Date;
-
 public class Person {
 
 	private String name;
@@ -56,5 +54,4 @@ public class Person {
 	public Double getIMC() {
 		return IMC;
 	}
-	
 }
