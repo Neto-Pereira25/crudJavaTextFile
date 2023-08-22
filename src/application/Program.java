@@ -38,6 +38,8 @@ public class Program {
 					service.saveRegisteredPeople(peopleList);
 				} else if (option == 6) {
 					service.listPeople(peopleList);
+				} else if(option == 7) {
+					service.deleteFile();
 				}
 
 			} catch (PersonException e) {

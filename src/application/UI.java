@@ -20,6 +20,7 @@ public class UI {
 		System.out.println("4 - DELETE PERSON");
 		System.out.println("5 - SAVE REGISTERED PEOPLE");
 		System.out.println("6 - LIST PEOPLE");
+		System.out.println("7 - DELETE FILE");
 		System.out.println("10 - EXIT");
 	}
 
@@ -37,8 +38,9 @@ public class UI {
 		}
 	}
 	
-	public static void messageCreatedPerson(String msg) {
+	public static void messageToUser(String msg) {
 		System.out.println();
-		System.out.println(msg);
+		System.out.print(msg);
+		System.out.println();
 	}
 }

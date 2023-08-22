@@ -2,6 +2,7 @@ package servicesPerson;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -93,7 +94,7 @@ public class Service {
 			Person person = new Person(name, age, height, weight);
 			peopleList.set(number, person);
 			
-			UI.messageCreatedPerson("People sucessfully updated!");
+			UI.messageToUser("People sucessfully updated!");
 		}
 		catch (RuntimeException e) {
 			throw new ServiceException("Error when updating the person's data!");
@@ -114,7 +115,7 @@ public class Service {
 			
 			peopleList.remove(number);
 			
-			UI.messageCreatedPerson("People sucessfully deleted!");
+			UI.messageToUser("People sucessfully deleted!");
 		}
 		catch (RuntimeException e) {
 			throw new ServiceException("Error when deleting person!");
@@ -144,7 +145,28 @@ public class Service {
 		} finally {
 			peopleList.clear();
 			UI.clearScreen();
-			UI.messageCreatedPerson("People sucessfully registered! Your list in now empty");
+			UI.messageToUser("People sucessfully registered! Your list in now empty");
+		}
+	}
+	
+	public void deleteFile() {
+		File filePath = new File(sourceFileStr);
+		UI.messageToUser("Are you sure you want to delete the file? (y/n) ");
+		char sure = scan.next().charAt(0);
+		try {
+			if (sure == 'y') {
+				if (filePath.delete()) {
+					UI.messageToUser("File successfully deleted!");
+				} else {
+					throw new ServiceException ("Error when trying to delete file");
+				}
+			} else {
+				UI.messageToUser("Operation canceled!");
+			}
+			
+		}
+		catch (ServiceException e) {
+			throw new ServiceException("Error: file not found!");
 		}
 	}
 	
