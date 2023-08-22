@@ -49,18 +49,24 @@ public class Service {
 			String itemFileText = br.readLine();
 			while (itemFileText != null) {
 				
+				System.out.println(itemFileText);
+				
 				String[] lines = itemFileText.split(",");
-				String namePerson = lines[2];
-				int agePerson = Integer.parseInt(lines[3]);
-				double weightPerson = Double.parseDouble(lines[4]);
-				double heightPerson = Double.parseDouble(lines[5]);
+				
+				String namePerson = lines[0];
+				int agePerson = Integer.parseInt(lines[1]);
+				double weightPerson = Double.parseDouble(lines[2]);
+				double heightPerson = Double.parseDouble(lines[3]);
+				
 				peopleList.add(new Person(namePerson, agePerson, heightPerson, weightPerson));
+				
+				itemFileText = br.readLine();
 			}
 		}
 		catch (IOException e) {
 			System.out.println("Error reading file!");
 		} finally {
-			UI.clearScreen();
+//			UI.clearScreen();
 		}
 	}
 
@@ -74,18 +80,7 @@ public class Service {
 	
 	public void saveRegisteredPeople (List<Person> peopleList) {
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(sourceFileStr, true))) {
-			bw.write("\tPEOPLE LIST");
-			bw.newLine();
-			if (peopleList.size() == 1) {
-				bw.write("THERE IS " + peopleList.size() + " REGISTERED");
-				bw.newLine();
-			} else {
-				bw.write("THERE ARE " + peopleList.size() + " REGISTERED");
-				bw.newLine();
-			}
 			for (Person p : peopleList) {
-				bw.write("Person " + (1 + peopleList.indexOf(p)));
-				bw.newLine();
 				bw.write(p.getName() 
 				+ "," 
 				+ p.getAge() 
@@ -111,6 +106,12 @@ public class Service {
 			if (peopleList.size() == 0) {
 				System.out.println("The list is empty");
 			} else {
+				System.out.println("-------------- LIST OF PEOPLE --------------");
+				if (peopleList.size() == 1) {
+					System.out.println("THERE IS " + peopleList.size() + " REGISTERED\"");
+				} else {
+					System.out.println("THERE ARE " + peopleList.size() + " REGISTERED\"");
+				}
 				System.out.println();
 				for (Person p: peopleList) {
 					System.out.println(p);
