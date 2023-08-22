@@ -66,7 +66,7 @@ public class Service {
 		catch (IOException e) {
 			System.out.println("Error reading file!");
 		} finally {
-//			UI.clearScreen();
+			UI.clearScreen();
 		}
 	}
 
@@ -79,7 +79,7 @@ public class Service {
 	}
 	
 	public void saveRegisteredPeople (List<Person> peopleList) {
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter(sourceFileStr, true))) {
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(sourceFileStr))) {
 			for (Person p : peopleList) {
 				bw.write(p.getName() 
 				+ "," 
@@ -90,14 +90,15 @@ public class Service {
 				+ String.format("%.2f", p.getHeight())
 				+ "," + String.format("%.2f", p.getIMC()));
 				bw.newLine();
-//				peopleList.remove(p);
 			}
-			UI.messageCreatedPerson();
+			
 		} catch (IOException e) {
 			System.out.println("Error creating file!");
 			e.printStackTrace();
 		} finally {
-//			UI.clearScreen();
+			peopleList.clear();
+			UI.clearScreen();
+			UI.messageCreatedPerson();
 		}
 	}
 	

@@ -39,6 +39,6 @@ public class UI {
 	
 	public static void messageCreatedPerson() {
 		System.out.println();
-		System.out.println("person sucessfully registered!");
+		System.out.println("People sucessfully registered! Your list in now empty");
 	}
 }
