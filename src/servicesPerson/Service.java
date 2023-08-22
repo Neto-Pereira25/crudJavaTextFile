@@ -71,6 +71,9 @@ public class Service {
 	}
 
 	public void updatePerson(List<Person> peopleList) {
+		if (peopleList.size() == 0) {
+			throw new ServiceException("Cannot update, because the list is empty");
+		}
 		try {
 			listPeople(peopleList);
 			System.out.print("Enter the number of the person you want to change: ");
@@ -95,16 +98,33 @@ public class Service {
 		catch (RuntimeException e) {
 			throw new ServiceException("Error when updating the person's data!");
 		}
-		
-		
-		
 	}
 
 	public void deletePerson(List<Person> peopleList) {
-
+		if (peopleList.size() == 0) {
+			throw new ServiceException("Cannot delete, because the list is empty");
+		}
+		
+		try {
+			listPeople(peopleList);
+			System.out.print("Enter the number of the person you want to delete: ");
+			int number = scan.nextInt();
+			
+			number--;
+			
+			peopleList.remove(number);
+			
+			UI.messageCreatedPerson("People sucessfully deleted!");
+		}
+		catch (RuntimeException e) {
+			throw new ServiceException("Error when deleting person!");
+		}
 	}
 	
 	public void saveRegisteredPeople (List<Person> peopleList) {
+		if (peopleList.size() == 0) {
+			throw new ServiceException("Your list is empty, add at least one person to be able to save!");
+		}
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(sourceFileStr))) {
 			for (Person p : peopleList) {
 				bw.write(p.getName() 
@@ -131,6 +151,7 @@ public class Service {
 	public void listPeople(List<Person> peopleList) {
 		try {
 			if (peopleList.size() == 0) {
+				System.out.println();
 				System.out.println("The list is empty");
 			} else {
 				System.out.println("-------------- LIST OF PEOPLE --------------");
@@ -145,8 +166,8 @@ public class Service {
 				}
 			}
 		}
-		catch (PersonException e) {
-			throw new PersonException("It was not possible to list the people");
+		catch (ServiceException e) {
+			throw new ServiceException("It was not possible to list the people");
 		}
 	}
 }
