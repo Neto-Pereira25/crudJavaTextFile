@@ -18,19 +18,27 @@ public class UI {
 		System.out.println("2 - READ");
 		System.out.println("3 - UPDATE");
 		System.out.println("4 - DELETE");
-		System.out.println("5 - EXIT");
+		System.out.println("5 - SAVE REGISTERED PEOPLE");
+		System.out.println("6 - LIST PEOPLE");
+		System.out.println("10 - EXIT");
 	}
 
 	public static int readChoose(Scanner scan) {
 		try {
 			int choose = scan.nextInt();
+			if (choose < 1 || choose > 10) {
+				System.out.println();
+				throw new InputMismatchException("Error reading your choose. Valid values are from 1 to 5");
+			}
 			return choose;
 		} catch (RuntimeException e) {
+			System.out.println();
 			throw new InputMismatchException("Error reading your choose. Valid values are from 1 to 5");
 		}
 	}
 	
 	public static void messageCreatedPerson() {
+		System.out.println();
 		System.out.println("person sucessfully registered!");
 	}
 }
