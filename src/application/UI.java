@@ -14,10 +14,10 @@ public class UI {
 	public static void printOptionsMenu() {
 		System.out.println();
 		System.out.println("Choose one of the options: ");
-		System.out.println("1 - REGISTER");
-		System.out.println("2 - READ");
-		System.out.println("3 - UPDATE");
-		System.out.println("4 - DELETE");
+		System.out.println("1 - REGISTER PERSON");
+		System.out.println("2 - READ LIST PEOPLE");
+		System.out.println("3 - UPDATE PERSON");
+		System.out.println("4 - DELETE PERSON");
 		System.out.println("5 - SAVE REGISTERED PEOPLE");
 		System.out.println("6 - LIST PEOPLE");
 		System.out.println("10 - EXIT");
@@ -37,8 +37,8 @@ public class UI {
 		}
 	}
 	
-	public static void messageCreatedPerson() {
+	public static void messageCreatedPerson(String msg) {
 		System.out.println();
-		System.out.println("People sucessfully registered! Your list in now empty");
+		System.out.println(msg);
 	}
 }

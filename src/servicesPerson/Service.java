@@ -70,11 +70,37 @@ public class Service {
 		}
 	}
 
-	public void updatePerson() {
-
+	public void updatePerson(List<Person> peopleList) {
+		try {
+			listPeople(peopleList);
+			System.out.print("Enter the number of the person you want to change: ");
+			int number = scan.nextInt();
+			
+			number--;
+			scan.nextLine();
+			System.out.println("Now enter the updated data:");
+			System.out.print("Name: ");
+			String name = scan.nextLine();
+			System.out.print("Age: ");
+			int age = scan.nextInt();
+			System.out.print("Weight: ");
+			double weight = scan.nextDouble();
+			System.out.print("Height: ");
+			double height = scan.nextDouble();
+			Person person = new Person(name, age, height, weight);
+			peopleList.set(number, person);
+			
+			UI.messageCreatedPerson("People sucessfully updated!");
+		}
+		catch (RuntimeException e) {
+			throw new ServiceException("Error when updating the person's data!");
+		}
+		
+		
+		
 	}
 
-	public void deletePerson() {
+	public void deletePerson(List<Person> peopleList) {
 
 	}
 	
@@ -98,7 +124,7 @@ public class Service {
 		} finally {
 			peopleList.clear();
 			UI.clearScreen();
-			UI.messageCreatedPerson();
+			UI.messageCreatedPerson("People sucessfully registered! Your list in now empty");
 		}
 	}
 	
@@ -115,7 +141,7 @@ public class Service {
 				}
 				System.out.println();
 				for (Person p: peopleList) {
-					System.out.println(p);
+					System.out.println((1 + peopleList.indexOf(p)) + " - " + p);
 				}
 			}
 		}

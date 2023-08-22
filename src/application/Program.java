@@ -31,9 +31,9 @@ public class Program {
 				} else if (option == 2) {
 					service.readPeopleList(peopleList);
 				} else if (option == 3) {
-
+					service.updatePerson(peopleList);
 				} else if (option == 4) {
-
+					service.deletePerson(peopleList);
 				} else if (option == 5) {
 					service.saveRegisteredPeople(peopleList);
 				} else if (option == 6) {
