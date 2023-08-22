@@ -36,12 +36,12 @@ public class Service {
 			
 			Person p = new Person(name, age, height, weight);
 			
+			UI.clearScreen();
+			UI.messageToUser("Person added to the list");
 			return p;
 		} catch (RuntimeException e) {
 			throw new PersonException("Error: this operation cannot be carried out!");
-		} finally {
-			UI.clearScreen();
-		}
+		} 
 	}
 
 	public void readPeopleList(List<Person> peopleList) {
@@ -62,13 +62,14 @@ public class Service {
 				peopleList.add(new Person(namePerson, agePerson, heightPerson, weightPerson));
 				
 				itemFileText = br.readLine();
+				
+				UI.clearScreen();
+				UI.messageToUser("File read successfully!");
 			}
 		}
 		catch (IOException e) {
 			System.out.println("Error reading file!");
-		} finally {
-			UI.clearScreen();
-		}
+		} 
 	}
 
 	public void updatePerson(List<Person> peopleList) {
@@ -94,6 +95,7 @@ public class Service {
 			Person person = new Person(name, age, height, weight);
 			peopleList.set(number, person);
 			
+			UI.clearScreen();
 			UI.messageToUser("People sucessfully updated!");
 		}
 		catch (RuntimeException e) {
@@ -115,6 +117,7 @@ public class Service {
 			
 			peopleList.remove(number);
 			
+			UI.clearScreen();
 			UI.messageToUser("People sucessfully deleted!");
 		}
 		catch (RuntimeException e) {
@@ -139,14 +142,13 @@ public class Service {
 				bw.newLine();
 			}
 			
-		} catch (IOException e) {
-			System.out.println("Error creating file!");
-			e.printStackTrace();
-		} finally {
 			peopleList.clear();
 			UI.clearScreen();
 			UI.messageToUser("People sucessfully registered! Your list in now empty");
-		}
+		} catch (IOException e) {
+			System.out.println("Error creating file!");
+			e.printStackTrace();
+		} 
 	}
 	
 	public void deleteFile() {
@@ -156,11 +158,13 @@ public class Service {
 		try {
 			if (sure == 'y') {
 				if (filePath.delete()) {
+					UI.clearScreen();
 					UI.messageToUser("File successfully deleted!");
 				} else {
 					throw new ServiceException ("Error when trying to delete file");
 				}
 			} else {
+				UI.clearScreen();
 				UI.messageToUser("Operation canceled!");
 			}
 			
@@ -172,6 +176,7 @@ public class Service {
 	
 	public void listPeople(List<Person> peopleList) {
 		try {
+			UI.clearScreen();
 			if (peopleList.size() == 0) {
 				System.out.println();
 				System.out.println("The list is empty");
