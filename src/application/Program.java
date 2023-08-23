@@ -46,6 +46,7 @@ public class Program {
 				System.out.println("Error: " + e.getMessage());
 			} catch (RuntimeException e) {
 				System.out.println("Error: " + e.getMessage());
+				scan.nextLine();
 			}
 		}
 	}

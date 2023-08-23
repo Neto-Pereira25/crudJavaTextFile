@@ -27,14 +27,17 @@ public class UI {
 	public static int readChoose(Scanner scan) {
 		try {
 			int choose = scan.nextInt();
-			if (choose < 1 || choose > 10) {
+			if (choose == 10) {
+				return choose;
+			}
+			if (choose < 1 || choose > 7) {
 				System.out.println();
 				throw new InputMismatchException("Error reading your choose. Valid values are from 1 to 5");
 			}
 			return choose;
 		} catch (RuntimeException e) {
 			System.out.println();
-			throw new InputMismatchException("Error reading your choose. Valid values are from 1 to 5");
+			throw new InputMismatchException("Error reading your choose. Enter a value from 1 to 5");
 		}
 	}
 	
